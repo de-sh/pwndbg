@@ -18,7 +18,7 @@ parser.add_argument('-f', '--force', action='store_true', help='Force displaying
 @pwndbg.commands.ArgparsedCommand(parser)
 @pwndbg.commands.OnlyWhenRunning
 def dumpargs(force=False):
-    args = (not force and call_args()) or all_args()
+    args = call_args() if not force else all_args()
 
     if args:
         print('\n'.join(args))
