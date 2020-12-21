@@ -73,7 +73,7 @@ def enhance(value, code = True):
     # If it's not in a page we know about, try to dereference
     # it anyway just to test.
     can_read = True
-    if not page or None == pwndbg.memory.peek(value):
+    if not page or pwndbg.memory.peek(value) is None:
         can_read = False
 
     if not can_read:
