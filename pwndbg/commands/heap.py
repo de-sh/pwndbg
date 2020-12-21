@@ -633,7 +633,7 @@ def vis_heap_chunks(addr=None, count=None, naive=None):
 
             asc += bin_ascii(pwndbg.memory.read(cursor, ptr_size))
             if printed % 2 == 0:
-                out += '\t' + color_func(asc) + ('\t <-- ' + ', '.join(labels) if len(labels) else '')
+                out += '\t' + color_func(asc) + ('\t <-- ' + ', '.join(labels) if labels else '')
                 asc = ''
                 labels = []
 
