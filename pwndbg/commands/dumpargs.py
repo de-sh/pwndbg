@@ -36,7 +36,7 @@ def call_args():
     results = []
 
     for arg, value in pwndbg.arguments.get(pwndbg.disasm.one()):
-        code   = False if arg.type == 'char' else True
+        code   = not arg.type == 'char'
         pretty = pwndbg.chain.format(value, code=code)
         results.append('        %-10s %s' % (arg.name+':', pretty))
 
