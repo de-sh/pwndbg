@@ -288,7 +288,7 @@ class _ArgparsedCommand(Command):
 
     def split_args(self, argument):
         argv = gdb.string_to_argv(argument)
-        return tuple(), vars(self.parser.parse_args(argv))
+        return (), vars(self.parser.parse_args(argv))
 
 
 class ArgparsedCommand:
