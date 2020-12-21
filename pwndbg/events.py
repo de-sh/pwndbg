@@ -33,7 +33,7 @@ pause = 0
 # capture this so that we can fire off all of the 'start' events first.
 class StartEvent:
     def __init__(self):
-        self.registered = list()
+        self.registered = []
         self.running    = False
 
     def connect(self, function):
@@ -134,7 +134,7 @@ class Pause:
 # objects are loaded.  This greatly slows down the debugging session.
 # In order to combat this, we keep track of which objfiles have been loaded
 # this session, and only emit objfile events for each *new* file.
-objfile_cache = dict()
+objfile_cache = {}
 
 
 def connect(func, event_handler, name=''):
@@ -247,4 +247,4 @@ def _start_stop():
 @exit
 def _reset_objfiles():
     global objfile_cache
-    objfile_cache = dict()
+    objfile_cache = {}

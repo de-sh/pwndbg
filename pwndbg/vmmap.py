@@ -37,7 +37,7 @@ custom_pages = []
 @pwndbg.memoize.reset_on_stop
 def get():
     if not pwndbg.proc.alive:
-        return tuple()
+        return ()
     pages = []
     pages.extend(proc_pid_maps())
 
@@ -155,7 +155,7 @@ def proc_pid_maps():
     # If we debug remotely a qemu-user or qemu-system target,
     # there is no point of hitting things further
     if pwndbg.qemu.is_qemu():
-        return tuple()
+        return ()
 
     example_proc_pid_maps = """
     7f95266fa000-7f95268b5000 r-xp 00000000 08:01 418404                     /lib/x86_64-linux-gnu/libc-2.19.so
@@ -192,7 +192,7 @@ def proc_pid_maps():
         except (OSError, gdb.error):
             continue
     else:
-        return tuple()
+        return ()
 
     data = data.decode()
 
@@ -236,12 +236,12 @@ def monitor_info_mem():
     except gdb.error:
         # Likely a `gdb.error: "monitor" command not supported by this target.`
         # TODO: add debug logging
-        return tuple()
+        return ()
 
     # Handle disabled PG
     # This will prevent a crash on abstract architectures
     if len(lines) == 1 and lines[0] == 'PG disabled':
-        return tuple()
+        return ()
 
     pages = []
     for line in lines:
@@ -335,7 +335,7 @@ def info_files():
     """
 
     seen_files = set()
-    pages      = list()
+    pages      = []
     main_exe   = ''
 
     for line in gdb.execute('info files', to_string=True).splitlines():
@@ -388,7 +388,7 @@ def info_auxv(skip_exe=False):
     auxv = pwndbg.auxv.get()
 
     if not auxv:
-        return tuple()
+        return ()
 
     pages    = []
     exe_name = auxv.AT_EXECFN or 'main.exe'

@@ -62,11 +62,11 @@ class RegisterSet:
                  pc='pc',
                  stack='sp',
                  frame=None,
-                 retaddr=tuple(),
-                 flags=dict(),
-                 gpr=tuple(),
-                 misc=tuple(),
-                 args=tuple(),
+                 retaddr=(),
+                 flags={},
+                 gpr=(),
+                 misc=(),
+                 args=(),
                  retval=None):
         self.pc    = pc
         self.stack = stack
